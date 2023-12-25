@@ -1,0 +1,8 @@
+version: '3'
+services:
+  givenergy-60:
+    image: 'britkat/giv_tcp-ma:latest'
+    environment:
+      - INVERTOR_IP=192.168.68.61
+    restart: always
+    network_mode: host
