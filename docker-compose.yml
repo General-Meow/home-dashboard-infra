@@ -125,4 +125,5 @@ services:
     environment:
       NODE_ENV: dev
       OCTOPUS_API_KEY:
-
+      TFL_API_KEY:
+      OCTOPUS_ACCOUNT_NUMBER:
