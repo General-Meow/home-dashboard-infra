@@ -86,7 +86,6 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-#      - /home/paul/.docker/config.json:/config.json
       - /Users/paul/.docker/config.json:/config.json
     command: --interval 30
     logging:
@@ -105,7 +104,7 @@ services:
         max-size: "10m"
         max-file: "3"
   home-dashboard-fe:
-    image: generalmeow/home-dashboard-fe
+    image: generalmeow/home-dashboard-fe:latest
     restart: always
     ports:
       - "3001:3001"
@@ -114,7 +113,7 @@ services:
         max-size: "10m"
         max-file: "3"
   home-dashboard-be:
-    image: generalmeow/home-dashboard
+    image: generalmeow/home-dashboard:latest
     restart: always
     ports:
       - "3000:3000"
