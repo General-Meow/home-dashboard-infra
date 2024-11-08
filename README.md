@@ -4,6 +4,7 @@ Infra related code for the home dashboard project
 
 ### Overview
 
+![Rurrent architecture](./diagrams/DockerComposeOverview.png)
 
 
 This project contains code to run the project both locally and on the raspberrypi, the intent is to get the user up 
@@ -24,7 +25,7 @@ OCTOPUS_ACCOUNT_NUMBER: x
 Eventually, the application will be deployed differently to the way it is now. The intent is to have it deployed to a 
 kubernetes system like follows
 
-[Intended architecture](./diagrams/HomeDashboard.drawio.png)
+![Intended architecture](./diagrams/HomeDashboard.drawio.png)
 
 
 
