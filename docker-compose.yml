@@ -123,6 +123,6 @@ services:
         max-file: "3"
     environment:
       NODE_ENV: dev
-      OCTOPUS_API_KEY:
-      TFL_API_KEY:
-      OCTOPUS_ACCOUNT_NUMBER:
+      OCTOPUS_API_KEY: sk_live_x
+      TFL_API_KEY: x
+      OCTOPUS_ACCOUNT_NUMBER: x
