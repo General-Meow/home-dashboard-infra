@@ -32,3 +32,18 @@ kubernetes system like follows
 - `docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx`
 - `docker run --name my-custom-nginx-container -v ~/home-dashboard-infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -v ~/home-dashboard-infra/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -d -p 80:80--add-host=host.docker.internal:host-gateway nginx`
 - `docker run --name my-custom-nginx-container -v ~/home-dashboard-infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -v ~/home-dashboard-infra/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -v ~/home-dashboard-fe/build:/usr/share/nginx/html/home-dashboard -d -p 80:80 --add-host=host.docker.internal:host-gateway nginx`
+
+### Production (WIP)
+
+For a production like environment, we'll be using k3s. It's a production like wrapper over the k8s distribution of k3s.
+
+- To setup a 3 node cluster that accepts traffic on port 8081 run the following:
+`k3d cluster create home-dashboard-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2`
+
+- Then create an ingress that will route external traffic to certain services
+`kubectl apply -f ./k3d/ingress.yaml`
+
+- Deploy the example nginx service in the helmfile
+`helmfile apply -f ./k3d/helmfile.yaml --no-color` (no-color as there seems to be a bug with the helmdiff app diffing with colours)
+
+- In a browser, navigate to `localhost:8081` and you should see the nginx default page
