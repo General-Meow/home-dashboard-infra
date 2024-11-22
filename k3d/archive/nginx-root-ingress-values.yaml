@@ -1,0 +1,15 @@
+ingress:
+  namespace: default
+  host:
+    service:
+      name: nginx-root
+      port: 80
+#  forceSSLRedirect: "true"
+#  ingressClass: external-ingress
+  # annotations:
+  # - key: testAnnotation
+  #   value: testValue
+  # - key: testAnnotation
+  #   value: testValue
+  # tlsHosts:
+  # - stackator.com

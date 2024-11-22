@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: nginx-root
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nginx-example
+                name: nginx-root
                 port:
                   number: 80

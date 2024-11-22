@@ -37,13 +37,26 @@ kubernetes system like follows
 
 For a production like environment, we'll be using k3s. It's a production like wrapper over the k8s distribution of k3s.
 
+#### Prerequisites
+- k3d installed
+- helm installed
+- helmfile installed
+
 - To setup a 3 node cluster that accepts traffic on port 8081 run the following:
-`k3d cluster create home-dashboard-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2`
+`k3d cluster create home-dashboard-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2` or 
+` k3d cluster create home-dashboard-cluster --api-port 6550 -p "80:80@loadbalancer" -p "443:443@loadbalancer" --agents 3` for a more production like one
 
 - Then create an ingress that will route external traffic to certain services
 `kubectl apply -f ./k3d/ingress.yaml`
+
+- You may need to setup helm with a number of plugins, helmfile used to have a 'init' option that would do that for you but has seem to be removed, so do it manually in helm with the following (https://helm.sh/docs/community/related/#:~:text=Helm%20Plugins,testing%20plugin%20for%20Helm%20charts.&text=helm%2Drelease%2Dplugin%20%2D%20Plugin,releases%2C%20set%20helm%20release%20TTL.)
+- install helm-diff with `helm plugin install https://github.com/databus23/helm-diff` (https://github.com/databus23/helm-diff)
+- install helm secrets `helm plugin install https://github.com/jkroepke/helm-secrets` (https://github.com/jkroepke/helm-secrets?tab=readme-ov-file)
+- 
 
 - Deploy the example nginx service in the helmfile
 `helmfile apply -f ./k3d/helmfile.yaml --no-color` (no-color as there seems to be a bug with the helmdiff app diffing with colours)
 
 - In a browser, navigate to `localhost:8081` and you should see the nginx default page
+
+k create configmap custom-index --from-file=./nginx-custom-values/custom-index.html

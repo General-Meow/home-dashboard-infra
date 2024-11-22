@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: mw-nginx-example-with-custom-values
+  name: mw-home-dashboard-be-services
   namespace: default
 spec:
   stripPrefix:
@@ -13,25 +13,18 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: home-dashboard-be-services-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: default-mw-nginx-example-with-custom-values@kubernetescrd #<namespace>-<middleware-name>@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-mw-home-dashboard-be-services@kubernetescrd #<namespace>-<middleware-name>@kubernetescrd
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /home-dashboard
             pathType: Prefix
             backend:
               service:
-                name: nginx-example
-                port:
-                  number: 80
-          - path: /custom
-            pathType: Prefix
-            backend:
-              service:
-                name: nginx-example-with-custom-values
+                name: home-dashboard-be
                 port:
                   number: 8888

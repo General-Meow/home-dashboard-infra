@@ -1,0 +1,14 @@
+nameOverride: "custom-index"
+#apiVersion	api version of k8s object	"v1"
+#annotations	annotations in yaml map format to be added to the object	null
+#labels	labels to add to configmap object	null
+configmapData:   #	Map of key/value pairs to be included in the data field of the configmap	null
+  index.html: |
+    <html>
+      <head><title>Welcome</title></head>
+      <body>
+        <h2>Welcome your on the k8s root</h2>
+      </body>
+    </html>
+
+#configmapBinaryData
