@@ -1,13 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: custom-index
+  name: {{ .Release.Name }}-custom-index-configmap
   namespace: default
 data:
-  index.html: |
-    <html>
-    <head><title>Welcome</title></head>
-    <body>
-    <h2>Welcome your on the k8s root</h2>
-    </body>
-    </html>
+  index.html: {{ .Values.indexContent | toYaml | indent 1 }}
