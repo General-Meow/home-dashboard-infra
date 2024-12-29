@@ -44,7 +44,7 @@ For a production like environment, we'll be using k3s. It's a production like wr
 
 - To setup a 3 node cluster that accepts traffic on port 8081 run the following:
 `k3d cluster create home-dashboard-cluster --api-port 6550 -p "8081:80@loadbalancer" --agents 2` or 
-` k3d cluster create home-dashboard-cluster --api-port 6550 -p "80:80@loadbalancer" -p "443:443@loadbalancer" --agents 3` for a more production like one
+`k3d cluster create home-dashboard-cluster --api-port 6550 -p "80:80@loadbalancer" -p "443:443@loadbalancer" --agents 3` for a more production like one
 
 - Then create an ingress that will route external traffic to certain services
 `kubectl apply -f ./k3d/ingress.yaml`
